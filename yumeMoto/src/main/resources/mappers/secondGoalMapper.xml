@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yumemoto.yumeapp.mapper.SecondGoalMapper">
+
+	<insert id="createSecondGoal">
+		INSERT INTO secondgoal (second_m_num, second_content, second_mem_num, second_createDate, second_updateDate, second_good) 
+		VALUES (#{second_m_num}, #{second_content}, #{second_mem_num}, #{second_createDate}, #{second_updateDate}, #{second_good});
+	</insert>
+	
+	<select id="readSecondGoal" resultType="SecondGoalVO">
+		select * from secondgoal where second_num = #{second_num}
+	</select>
+	
+	<update id="updateSecondGoal">
+		UPDATE secondgoal SET 
+		second_content=#{second_content},
+		second_updateDate=#{second_updateDate},
+		second_good=#{second_good} 
+		WHERE second_num=#{second_num};
+	</update>
+	
+	<delete id="deleteSecondGoal">
+		delete from secondgoal where second_num = #{second_num}
+	</delete>
+	
+	<select id="listSecondGoal" resultType="SecondGoalVO">
+		select * from secondgoal group by second_num
+	</select>
+</mapper>  

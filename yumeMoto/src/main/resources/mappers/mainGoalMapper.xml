@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yumemoto.yumeapp.mapper.MainGoalMapper">
+
+	<insert id="createMainGoal">
+		INSERT INTO maingoal (main_mem_num, main_content, main_createDate, main_updateDate, main_good) 
+		VALUES (#{main_mem_num}, #{main_content}, #{main_createDate}, #{main_updateDate}, #{main_good});
+	</insert>
+	
+	<select id="readMainGoal" resultType="MainGoalVO">
+		select * from maingoal where main_num = #{main_num}
+	</select>
+	
+	<update id="updateMainGoal">
+		UPDATE maingoal SET 
+		main_content=#{main_content},
+		main_updateDate=#{main_updateDate},
+		main_good=#{main_good} 
+		WHERE main_num=#{main_num};
+	</update>
+	
+	<delete id="deleteMainGoal">
+		delete from maingoal where main_num = #{main_num}
+	</delete>
+	
+	<select id="listMainGoal" resultType="MainGoalVO">
+		select * from maingoal group by main_num
+	</select>
+</mapper>  
