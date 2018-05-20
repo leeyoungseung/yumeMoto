@@ -19,14 +19,21 @@
 	<property name="username" value="zerock"></property>
 	<property name="password" value="zerock"></property>
 	</bean>	
+	
 	<!-- It make factory object bean for connecting sessions -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
  	<property name="dataSource" ref="dataSource" />
   	<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
   	<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
  	</bean>
+ 	
  	<!-- It make connecting session form sqlSessionFactory-->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
+	
+	<!-- It is set Location of DI Object -->
+	<context:component-scan base-package="com.yumemoto.yumeapp.dao"></context:component-scan>
+ 	<context:component-scan base-package="com.yumemoto.yumeapp.service"></context:component-scan>
+	
 </beans>
